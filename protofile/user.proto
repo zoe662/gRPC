@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+// what client can do or what server can provide
+service User {
+     /*
+        from_client = {user=string, password=string}
+        from_server = {data=map}
+     */
+    rpc Login(UserRequest) returns (UserResponse) {}
+    /*
+        from_client = {auth=string, password=string}
+        from_server = {data=map}
+     */
+    rpc Ping(UserRequest) returns (UserResponse) {}
+}
+
+// what client will need
+message UserRequest {
+    optional string auth = 1;
+    UserPayloads payload = 2;
+}
+
+
+message UserPayloads {
+    oneof payload {
+        LoginPayloads login = 1;
+        PingPayloads ping = 2;
+    }
+}
+
+// client request message type
+message LoginPayloads {
+    string user = 1;
+    string pwd = 2;
+}
+
+message PingPayloads {
+    string text = 1;
+}
+
+// what client will get
+message UserResponse {
+    UserResults data = 1;
+}
+
+message UserResults {
+    // fuction name
+    oneof response {
+        LoginResponse login = 1;
+        PingResponse ping = 2;
+        string error = 3;
+    }
+}
+
+// server response message type
+message LoginResponse {
+    // token_value = {string:string}
+    reserved "token_value";
+    //    map<string, string> token_value = 1;
+    string token = 2;
+
+}
+
+message PingResponse {
+    string text = 1;
+}

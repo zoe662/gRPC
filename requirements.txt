@@ -1,0 +1,5 @@
+grpcio==1.44.0
+grpcio-tools==1.44.0
+protobuf==3.20.1
+PyJWT==2.3.0
+six==1.16.0
