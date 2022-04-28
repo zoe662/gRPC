@@ -1,12 +1,5 @@
 # gRPC
-* 客戶端可以遠程調用伺服器方法的協議 <br>
-
-
-```mermaid
-  graph TD;
-      client--> protocol buffers;
-      protocol buffers--> server;
-```
+* 客戶端可以遠程調用伺服器方法的協議
 
   
 * protocol buffers
